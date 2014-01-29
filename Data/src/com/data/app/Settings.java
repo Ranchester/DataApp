@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 
 public class Settings extends Activity implements OnClickListener {
@@ -26,7 +27,22 @@ public class Settings extends Activity implements OnClickListener {
         et = (EditText) findViewById(R.id.EditText1);
         b = (Button) findViewById(R.id.button1);
         b.setOnClickListener(this);
-        loadPrefs(); //loads default preferences
+
+    	cb.setOnClickListener(new OnClickListener() {
+     
+    		@Override
+    		public void onClick(View v) {
+    			//is checkbox checked?
+    			if (((CheckBox) v).isChecked()) {
+    				b.setText("Save and quit");
+    			} else {
+    				b.setText("Quit");
+    			}
+     
+    		}
+    	});
+        
+    	loadPrefs(); //loads default preferences
         
     }
 
@@ -37,11 +53,12 @@ public class Settings extends Activity implements OnClickListener {
     	String name = sp.getString("NAME", "Name");
     	if(cbValue){
     		cb.setChecked(true);
+    		b.setText("Save and quit");
     	} else {
     		cb.setChecked(false);
+    		b.setText("Quit");
     	}
-    	
-    	et.setText(name);
+        et.setText(name);
     }
     
     //Saves boolean value for checkbox
@@ -69,6 +86,6 @@ public class Settings extends Activity implements OnClickListener {
 		
 		finish(); //closes activity after click
 		
-	}    
-    
+	}
+	    
 }
