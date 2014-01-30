@@ -11,8 +11,8 @@ import android.widget.ListView;
 //List activity class
 public class MainMenu extends ListActivity{
 	
-	String classNames[] = {"CalcActivity", "Settings"};
-	String names[] = {"Data between activities example","Settings" };
+	String classNames[] = {"CalcActivity", "Settings", "InternalStore"};
+	String names[] = {"Data between activities example","Set and save name", "Store text" };
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
