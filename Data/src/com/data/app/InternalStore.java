@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import com.data.app.InternalStore;
+
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class InternalStore extends Activity implements OnClickListener{
 	
@@ -27,7 +30,7 @@ public class InternalStore extends Activity implements OnClickListener{
 		save = (Button)findViewById(R.id.button1);
 		save.setOnClickListener(this);
 		filename = (EditText)findViewById(R.id.editText1);
-		entry = (EditText)findViewById(R.id.editText2);
+		entry = (EditText)findViewById(R.id.editText2);		
 	}
 
 	@Override
@@ -46,6 +49,8 @@ public class InternalStore extends Activity implements OnClickListener{
 			fos = openFileOutput(FILENAME, Context.MODE_PRIVATE); //opens a file FILENAME(with edittext content) in private mode
 			fos.write(JOURNAL_ENTRY.getBytes()); //writes JURNAL_ENTRY string inside the file
 			fos.close(); //file stream close
+			Toast entryToast = Toast.makeText(this, "Entry added", Toast.LENGTH_LONG);
+			entryToast.show();		
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
